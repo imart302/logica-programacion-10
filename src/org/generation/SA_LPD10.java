@@ -9,11 +9,11 @@ import java.util.Set;
 
 public class SA_LPD10 {
 	
-	public static ArrayList<Integer> randNums(Integer max, Integer num) {
+	public static ArrayList<Integer> randNums(Integer max, Integer nums) {
 		Set<Integer> repeat = new HashSet<Integer>();
 		ArrayList<Integer> rands = new ArrayList<Integer>();
 		
-		while(rands.size() < num) {
+		while(rands.size() < nums) {
 			Integer randint = (int) (Math.random()*max);
 			if(repeat.contains(randint)) continue;
 			
@@ -52,21 +52,22 @@ public class SA_LPD10 {
 		dict.put("lapiz", "pencil");
 		
 		ArrayList<String> words = new ArrayList<String>(dict.keySet());
-		ArrayList<Integer> rands;
+		ArrayList<Integer> randNums;
 		ArrayList<String> responses = new ArrayList<String>();
 		boolean out = false;
 		
 		do {
 			responses.clear();
-			rands = randNums(dict.size() - 1, 5);
-			for(int i = 0; i < rands.size(); i++) {
-				String word = words.get(rands.get(i));
+			randNums = randNums(dict.size() - 1, 5);
+			
+			for(int i = 0; i < randNums.size(); i++) {
+				String word = words.get(randNums.get(i));
 				System.out.print("Escriba la traduccion de " + word + ": ");
-				responses.add(sc.nextLine());
+				responses.add(sc.nextLine().toLowerCase());
 			}
 			
-			for(int i = 0; i < rands.size(); i++) {
-				String word = words.get(rands.get(i));
+			for(int i = 0; i < randNums.size(); i++) {
+				String word = words.get(randNums.get(i));
 				if(dict.get(word).equals(responses.get(i))) {
 					System.out.println(i+1 + ": " + "GOOD");
 				} else {
